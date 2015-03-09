@@ -18,6 +18,10 @@ build:
             name: output release tag
             code: |
                 git describe --tags --match 'v*' > $WERCKER_OUTPUT_DIR/.release_tag || true
+        - script:
+            name: preview release tag
+            code: |
+                cat $WERCKER_OUTPUT_DIR/.release_tag
 deploy:
   steps:
     # reference: https://github.com/motemen/ghq/blob/beee539aead9c3940a0c4706357c5753999f6c85/wercker.yml
