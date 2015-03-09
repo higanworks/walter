@@ -11,6 +11,14 @@ build:
                 . ./build
                 goxc -tasks='xc archive' -n walter -bc='linux,!arm windows darwin' -main-dirs-exclude='gopath,Godeps,tests' -d ${WERCKER_OUTPUT_DIR} -build-ldflags "-X ${REPO_PATH}/version.Version \"$(git describe --tags --always --dirty)\""
         - script:
+            name: show git version and help
+            code: |
+                git describe --help
+        - script:
+            name: show git version and help
+            code: |
+                git --version
+        - script:
             name: output release tag
             code: |
                 git pull --tags && git describe --tags --exact --match 'v*' > $WERCKER_OUTPUT_DIR/.release_tag || true
